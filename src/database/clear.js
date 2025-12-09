@@ -1,5 +1,5 @@
-const database = require('./connection');
-const Books = require('../models/Livro');
+const database = require("./connection");
+const Books = require("../models/Livro");
 
 async function clear() {
   try {
@@ -7,7 +7,7 @@ async function clear() {
 
     await Books.destroy({
       where: {},
-      truncate: true
+      truncate: true,
     });
 
     console.log("Tabela limpa com sucesso!");

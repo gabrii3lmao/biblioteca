@@ -14,8 +14,9 @@ Para rodar este projeto localmente, siga os passos abaixo:
 1. Requisitos
 
 Certifique-se de ter o Node.js e o npm (ou Yarn) instalados na sua máquina.
+
 2. Clonar o Repositório
-Bash
+
 ``` 
 git clone https://github.com/gabrii3lmao/biblioteca.git
 cd BIBLIOTECA-LIVROS
@@ -23,7 +24,7 @@ cd BIBLIOTECA-LIVROS
 3. Instalar Dependências
 
 Instale todas as bibliotecas necessárias definidas no package.json:
-Bash
+
 ```
 npm install 
 # ou
@@ -32,7 +33,7 @@ yarn install
 4. Inicializar o Servidor
 
 Inicie o servidor Express. O Sequelize irá criar automaticamente o arquivo biblioteca.db e a tabela livros se eles não existirem.
-Bash
+
 ```
 node server.js
 # ou, se estiver usando um pacote como nodemon:
@@ -45,6 +46,7 @@ O servidor estará rodando em http://localhost:3000.
 Todas as rotas devem ser acessadas na URL base: http://localhost:3000.
 
 Para interagir com a API, você pode usar ferramentas como Insomnia ou Postman, que permitem enviar requisições HTTP de forma prática.
+
 Exemplo 1: Cadastrar um Livro (POST)
 
 - Crie uma nova requisição.

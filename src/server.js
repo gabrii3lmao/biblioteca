@@ -1,17 +1,19 @@
 const express = require("express");
 const routes = require("./routes"); // carrega o index de rotas
+const methodOverride = require("method-override");
 const path = require("path");
 const app = express();
 const PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride("_method"));
 
 app.use(express.static(path.resolve(__dirname, "public")));
 app.use(routes);
 
+app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, "views"));
-app.set("views engine", "ejs");
 
 const connection = require("./database/connection");
 

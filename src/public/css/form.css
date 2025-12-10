@@ -1,0 +1,111 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #0f0f0f;
+  color: #fff;
+  padding: 40px 20px;
+}
+
+/* ===== Título ===== */
+h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* ===== Link Voltar ===== */
+a {
+  color: #1db954;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+hr {
+  margin: 20px 0 30px;
+  border-color: #333;
+}
+
+/* ===== Formulário ===== */
+form {
+  max-width: 550px;
+  margin: 0 auto;
+  background: #181818;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+form div {
+  margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+/* Inputs e textarea */
+input,
+textarea {
+  width: 100%;
+  padding: 12px 10px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #0f0f0f;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #1db954;
+  box-shadow: 0 0 5px rgba(29,185,84,0.5);
+}
+
+/* ===== Botão ===== */
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #1db954;
+  color: #000;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+button:hover {
+  background: #17a447;
+  transform: translateY(-2px);
+}
+
+/* Remove setas do input type="number" (Chrome, Edge, Safari) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove setas do Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+

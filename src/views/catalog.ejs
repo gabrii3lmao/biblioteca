@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= pageTitle %>
+    </title>
+    <link rel="stylesheet" href="/css/catalog.css">
+</head>
+
+<body>
+    <h1>
+        <%= pageTitle %>
+    </h1>
+    <h2><a href="/livros/novo">Adicionar novos livros</a></h2>
+    <% if (livros.length> 0) { %>
+        <h2>Livros Cadastrados:</h2>
+
+        <ul>
+            <% livros.forEach(function(livro) { %>
+                <li>
+                    <strong>
+                        <%= livro.nome %>
+                    </strong> (Ano: <%= livro.anoLancamento %>)
+                        <br>
+                        Autor: <%= livro.autor %> | Preço: R$ <%= livro.preco.toFixed(2) %>
+                                <p>Descrição: <%= livro.descricao %>
+                                </p>
+                <li>
+                    <a href="/livros/editar/<%= livro.id %>">Editar livro</a>
+                </li>
+                <li>
+                    <form action="/livros/<%= livro.id %>?_method=DELETE" method="POST" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este livro?');"
+                            style="color: red;">
+                            Deletar
+                        </button>
+                    </form>
+                </li>
+                </li>
+                <% }); %>
+        </ul>
+        <% } else { %>
+            <p>Nenhum livro encontrado no catálogo.</p>
+            <% } %>
+                <hr>
+
+</body>
+
+</html>

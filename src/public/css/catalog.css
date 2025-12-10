@@ -1,0 +1,133 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #0f0f0f;
+    color: #fff;
+    padding: 40px 20px;
+}
+
+/* ===== Títulos ===== */
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin: 25px 0 12px;
+    font-weight: 500;
+    color: #ddd;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #1db954; /* verde estilo Spotify */
+    font-weight: 600;
+}
+
+h2 a:hover {
+    opacity: 0.7;
+}
+
+/* ===== Contêiner dos cards ===== */
+ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    padding: 10px 0;
+}
+
+/* ===== Cada card ===== */
+ul li {
+    background: #181818;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+ul li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+}
+
+/* Nome do livro */
+ul li strong {
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+/* Parágrafos */
+p {
+    color: #bbb;
+    margin: 10px 0;
+}
+
+/* ===== Links de ação ===== */
+ul li a {
+    display: block;              /* vira bloco */
+    width: 100%;                 /* ocupa largura total */
+    text-align: center;          /* centralizado */
+    background: #1db95415;       /* verde suave transparente */
+    color: #1db954;
+    padding: 12px 0;
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+ul li a:hover {
+    background: #1db954;
+    color: #000;
+    transform: translateY(-2px);
+}
+
+
+/* ===== Botão deletar ===== */
+button {
+    width: 100%;                 /* ocupa toda a largura */
+    display: block;              /* força comportamento de bloco */
+    text-align: center;
+    background: #b3261e15;       /* fundo transparente avermelhado */
+    border: 1px solid #b3261e;
+    padding: 12px 0;             /* botão maior */
+    color: #ff4d4d;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s, transform 0.15s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #ff4d4d;
+    color: #000;
+    transform: translateY(-2px);
+}
+
+/* ===== Rodapé ===== */
+hr {
+    margin: 30px 0;
+    border-color: #333;
+}
+
+/* Responsividade: ajusta padding */
+@media (max-width: 480px) {
+    body {
+        padding: 20px 12px;
+    }
+}

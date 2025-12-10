@@ -12,7 +12,7 @@ module.exports = {
         preco,
         descricao,
       });
-      return res.status(201).json(livro);
+      return res.redirect("/");
     } catch (err) {
       console.error(err);
       return res.status(400).json({ err: "Falha ao cadastrar o livro" });
@@ -66,7 +66,7 @@ module.exports = {
       );
 
       const livroAtualizado = await Livro.findByPk(id);
-      return res.status(200).json(livroAtualizado);
+      return res.redirect('/')
     } catch (error) {
       console.error("Erro ao atualizar livro:", error);
       return res
@@ -85,12 +85,57 @@ module.exports = {
           .json({ error: "Livro não encontrado para exclusão" });
       }
 
-      return res.status(204).send();
+      return res.redirect("/");
     } catch (error) {
       console.log("erro ao deletar livro: ", error);
       return res
         .status(500)
         .json({ error: "Falha interna ao deletar o livro" });
+    }
+  },
+
+  async showCatalog(req, res) {
+    try {
+      const livros = await Livro.findAll();
+
+      return res.render("catalog", {
+        pageTitle: "Catálogo de livros",
+        livros: livros,
+      });
+    } catch (error) {
+      console.error("Erro ao renderizar catálogo: ", error);
+      return res.status(500).send("<h1> Erro ao renderizar o catálogo </h1>");
+    }
+  },
+
+  async showForm(req, res) {
+    try {
+      return res.render("form", {
+        pageTitle: "Adicionar um novo livro",
+      });
+    } catch (error) {
+      console.error("Erro ao renderizar a rota formulário: ", error);
+      return res.status(500).send("<h1> Erro ao carregar o formulário </h1>");
+    }
+  },
+
+  async showEditForm(req, res) {
+    const { id } = req.params;
+    try {
+      const livro = await Livro.findByPk(id);
+      if (!livro) {
+        return res.status(404).send("<h1> Livro não encontrado </h1>");
+      }
+
+      return res.render("formEditBook", {
+        pageTitle: `Editar Livro: ${livro.nome}`,
+        livro: livro,
+      });
+    } catch (error) {
+      console.error("Erro ao carregar formulário de edição:", error);
+      return res
+        .status(500)
+        .send("<h1>Erro interno ao carregar a página de edição.</h1>");
     }
   },
 };

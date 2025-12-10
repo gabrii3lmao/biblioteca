@@ -1,133 +1,254 @@
 /* ===== Reset ===== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Inter", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
+
 body {
-    background: #0f0f0f;
-    color: #fff;
-    padding: 40px 20px;
+  background: #0f0f0f;
+  color: #fff;
+  padding: 40px 20px;
 }
 
 /* ===== Títulos ===== */
 h1 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 2.6rem;
-    font-weight: 700;
-    color: #fff;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
 }
 
 h2 {
-    font-size: 1.4rem;
-    margin: 25px 0 12px;
-    font-weight: 500;
-    color: #ddd;
+  font-size: 1.1rem;
+  margin: 18px 0 12px;
+  font-weight: 600;
+  color: #ddd;
 }
-
+h1, h2 {
+    font-family: "Poppins", sans-serif;
+}
 h2 a {
-    text-decoration: none;
-    color: #1db954; /* verde estilo Spotify */
-    font-weight: 600;
+  text-decoration: none;
+  color: #1db954;
 }
 
 h2 a:hover {
-    opacity: 0.7;
+  opacity: 0.85;
 }
 
-/* ===== Contêiner dos cards ===== */
+/* ===== Contêiner dos cards (limite e centralização) ===== */
 ul {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
-    padding: 10px 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  padding: 10px 0;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 /* ===== Cada card ===== */
 ul li {
-    background: #181818;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    transition: transform 0.15s ease, box-shadow 0.2s ease;
+  background: #181818;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+  transition: transform 0.15s ease, box-shadow 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 140px; /* evita cards muito curtos */
 }
 
 ul li:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* Nome do livro */
-ul li strong {
-    font-size: 1.3rem;
-    color: #fff;
+/* ===== Cabeçalho (título + ano) ===== */
+.book-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
 }
 
-/* Parágrafos */
-p {
-    color: #bbb;
-    margin: 10px 0;
+.book-header strong {
+  font-size: 1.0rem;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
 }
 
-/* ===== Links de ação ===== */
-ul li a {
-    display: block;              /* vira bloco */
-    width: 100%;                 /* ocupa largura total */
-    text-align: center;          /* centralizado */
-    background: #1db95415;       /* verde suave transparente */
+.book-year {
+  font-size: 0.85rem;
+  color: #a6a6a6;
+  background: rgba(255,255,255,0.03);
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+/* ===== Meta (autor + preço) ===== */
+.book-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #bfbfbf;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+/* Em dispositivos pequenos autor/preço podem quebrar */
+.book-meta span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===== Descrição ===== */
+.book-description {
+  color: #c3c3c3;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 16px;
+  flex: 1; /* faz com que descrição ocupe o espaço disponível e empurre actions para baixo */
+  overflow: hidden;
+}
+.book-description, .book-meta span {
+    font-family: "Inter", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+/* ===== Ações (Editar + Deletar) ===== */
+.book-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+  align-items: center;
+}
+
+footer a {
     color: #1db954;
-    padding: 12px 0;
-    margin-top: 15px;
-    font-size: 1rem;
-    font-weight: 700;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.2s ease, transform 0.15s ease;
+}
+footer p {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.3px;
 }
 
-ul li a:hover {
-    background: #1db954;
-    color: #000;
-    transform: translateY(-2px);
+/* estilo do link "Editar" (aparece como botão) */
+.book-actions a {
+  flex: 1;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.98rem;
+  background: rgba(29,185,84,0.08);
+  color: #1db954;
+  border: 1px solid rgba(29,185,84,0.12);
+  transition: background 0.18s ease, transform 0.12s ease;
+}
+
+/* botão de deletar (form button) */
+.book-actions form {
+  flex: 1;
+  margin: 0;
+}
+
+.book-actions button {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(179,38,30,0.06);
+  border: 1px solid rgba(179,38,30,0.22);
+  color: #ff6b6b;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.98rem;
+  transition: background 0.18s ease, transform 0.12s ease;
+}
+
+/* hover states */
+.book-actions a:hover {
+  background: #1db954;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+.book-actions button:hover {
+  background: #ff4d4d;
+  color: #000;
+  transform: translateY(-2px);
+}
+/* ===== Tooltip personalizado ===== */
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip:hover::after {
+  content: attr(data-fulltext);
+  position: absolute;
+  bottom: 110%;
+  left: 0;
+  background: #222;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  z-index: 10;
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+.tooltip::after {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
 
-/* ===== Botão deletar ===== */
-button {
-    width: 100%;                 /* ocupa toda a largura */
-    display: block;              /* força comportamento de bloco */
-    text-align: center;
-    background: #b3261e15;       /* fundo transparente avermelhado */
-    border: 1px solid #b3261e;
-    padding: 12px 0;             /* botão maior */
-    color: #ff4d4d;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background 0.2s, color 0.2s, transform 0.15s ease;
-    margin-top: 20px;
+/* ===== Ajustes para telas pequenas ===== */
+@media (max-width: 600px) {
+  ul {
+    grid-template-columns: 1fr;
+  }
+
+  .book-header strong {
+    font-size: 1.05rem;
+  }
+
+  .book-actions {
+    flex-direction: column;
+  }
+
+  .book-actions a,
+  .book-actions button {
+    width: 100%;
+  }
 }
 
-button:hover {
-    background: #ff4d4d;
-    color: #000;
-    transform: translateY(-2px);
-}
-
-/* ===== Rodapé ===== */
-hr {
-    margin: 30px 0;
-    border-color: #333;
-}
-
-/* Responsividade: ajusta padding */
-@media (max-width: 480px) {
-    body {
-        padding: 20px 12px;
-    }
+/* ===== Pequenas melhorias de acessibilidade/visual ===== */
+.book-actions a:focus,
+.book-actions button:focus,
+.book-header strong:focus {
+  outline: 2px solid rgba(29,185,84,0.25);
+  outline-offset: 2px;
 }

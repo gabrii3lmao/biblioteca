@@ -8,6 +8,12 @@
         <%= pageTitle %>
     </title>
     <link rel="stylesheet" href="/css/catalog.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
 </head>
 
 <body>
@@ -21,32 +27,52 @@
         <ul>
             <% livros.forEach(function(livro) { %>
                 <li>
-                    <strong>
-                        <%= livro.nome %>
-                    </strong> (Ano: <%= livro.anoLancamento %>)
-                        <br>
-                        Autor: <%= livro.autor %> | Preço: R$ <%= livro.preco.toFixed(2) %>
-                                <p>Descrição: <%= livro.descricao %>
-                                </p>
-                <li>
-                    <a href="/livros/editar/<%= livro.id %>">Editar livro</a>
+                    <div class="book-header">
+                        <strong>
+                            <%= livro.nome %>
+                        </strong>
+                        <span class="book-year">
+                            <%= livro.anoLancamento %>
+                        </span>
+                    </div>
+
+                    <div class="book-meta">
+                        <span>
+                            <%= livro.autor %>
+                        </span>
+                        <span>R$ <%= livro.preco.toFixed(2) %></span>
+                    </div>
+
+                    <p class="book-description">
+                        <%= livro.descricao %>
+                    </p>
+
+                    <div class="book-actions">
+                        <a href="/livros/editar/<%= livro.id %>">Editar</a>
+
+                        <form action="/livros/<%= livro.id %>?_method=DELETE" method="POST">
+                            <button type="submit"
+                                onclick="return confirm('Tem certeza que deseja excluir este livro?');">
+                                Deletar
+                            </button>
+                        </form>
+                    </div>
                 </li>
-                <li>
-                    <form action="/livros/<%= livro.id %>?_method=DELETE" method="POST" style="display:inline;">
-                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este livro?');"
-                            style="color: red;">
-                            Deletar
-                        </button>
-                    </form>
-                </li>
-                </li>
-                <% }); %>
+
+                <% }) %>
         </ul>
         <% } else { %>
             <p>Nenhum livro encontrado no catálogo.</p>
             <% } %>
                 <hr>
-
+                <footer>
+                    <hr>
+                    <p style="text-align: center; font-size: 0.9em; color: #777;">
+                        Construído por gabrii3lmao. Código-fonte disponível no GitHub:
+                        <a href="https://github.com/gabrii3lmao/biblioteca" target="_blank">gabrii3lmao/biblioteca</a>
+                    </p>
+                </footer>
+<script src="/js/tooltips.js"></script>
 </body>
 
 </html>

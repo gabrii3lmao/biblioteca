@@ -52,6 +52,7 @@ Acesse no navegador:
 👉 http://localhost:3000
 
 🌐 Funcionalidades do Sistema
+
 ✔️ Listagem de livros em cards
 
 Com capa, título, autor, ano, preço, estrelas e descrição.

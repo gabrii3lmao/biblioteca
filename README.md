@@ -1,4 +1,4 @@
-📚 Biblioteca de Livros — Sistema Completo (Node.js + Express + Sequelize)
+# 📚 Biblioteca de Livros — Sistema Completo (Node.js + Express + Sequelize)
 
 Aplicação completa para gerenciamento de um catálogo de livros, incluindo:
 

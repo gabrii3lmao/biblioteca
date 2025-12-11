@@ -1,111 +1,171 @@
 /* ===== Reset ===== */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
-
+  
 body {
-  background: #0f0f0f;
-  color: #fff;
-  padding: 40px 20px;
+    background: #0f0f0f;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-/* ===== Título ===== */
+.form-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+/* ===== Cabeçalho do Form ===== */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+}
+
 h1 {
-  text-align: center;
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
 }
 
-/* ===== Link Voltar ===== */
-a {
-  color: #1db954;
-  text-decoration: none;
-  font-weight: 600;
+.back-link {
+    color: #1db954;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.2s;
 }
+.back-link:hover { opacity: 0.8; }
 
-a:hover {
-  opacity: 0.7;
-}
-
-hr {
-  margin: 20px 0 30px;
-  border-color: #333;
-}
-
-/* ===== Formulário ===== */
+/* ===== O Formulário ===== */
 form {
-  max-width: 550px;
-  margin: 0 auto;
-  background: #181818;
-  padding: 25px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    background: #181818;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-form div {
-  margin-bottom: 20px;
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
 }
 
-/* Labels */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+    gap: 20px;
+}
+
+/* Label Padrão */
 label {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 1rem;
-  color: #ccc;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #bbb;
+    font-weight: 500;
 }
 
-/* Inputs e textarea */
-input,
-textarea {
-  width: 100%;
-  padding: 12px 10px;
-  border-radius: 8px;
-  border: 1px solid #333;
-  background: #0f0f0f;
-  color: #fff;
-  font-size: 1rem;
-  outline: none;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+/* Inputs de Texto */
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    background: #121212;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.2s;
 }
 
-input:focus,
-textarea:focus {
-  border-color: #1db954;
-  box-shadow: 0 0 5px rgba(29,185,84,0.5);
+input:focus, textarea:focus {
+    border-color: #1db954;
+    background: #000;
 }
 
-/* ===== Botão ===== */
-button {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 8px;
-  background: #1db954;
-  color: #000;
-  font-size: 1.1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease;
+/* Textarea redimensionável apenas verticalmente */
+textarea { resize: vertical; }
+
+/* ===== Input de Arquivo (Visual melhorado) ===== */
+input[type="file"] {
+    padding: 10px;
+    background: #202020;
+    cursor: pointer;
+}
+input[type="file"]::file-selector-button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-button:hover {
-  background: #17a447;
-  transform: translateY(-2px);
+/* ===== Estrelas (Rating) ===== */
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+    background: #121212;
+    padding: 6px 12px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    width: fit-content;
 }
 
-/* Remove setas do input type="number" (Chrome, Edge, Safari) */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.rating input { display: none; }
+
+.rating label {
+    cursor: pointer;
+    font-size: 24px;
+    color: #444;
+    margin: 0;
+    line-height: 1;
+    transition: 0.2s;
 }
 
-/* Remove setas do Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+.rating input:checked ~ label,
+.rating input:hover ~ label,
+.rating input:hover ~ label ~ label {
+    color: #ffc107;
 }
 
+/* ===== Botão Submit ===== */
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: #1db954;
+    color: #000;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.2s;
+}
+
+.btn-submit:hover {
+    background: #1ed760;
+    transform: translateY(-2px);
+}
+
+/* Responsividade do Form */
+@media (max-width: 500px) {
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    body { padding: 10px; }
+    form { padding: 20px; }
+}

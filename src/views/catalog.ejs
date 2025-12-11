@@ -9,97 +9,79 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        .book-card-content {
-            display: flex;
-            gap: 20px;
-            align-items: start;
-        }
-        .book-cover img {
-            max-width: 120px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .book-info {
-            flex: 1;
-        }
-        .stars-display {
-            color: #ffc107; /* Amarelo */
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-    </style>
 </head>
 
 <body>
     <h1><%= pageTitle %></h1>
-    <h2><a href="/livros/novo">Adicionar novos livros</a></h2>
     
+    <div class="header-actions">
+        <h2>Livros Cadastrados</h2>
+        <a href="/livros/novo" class="btn-add">+ Novo Livro</a>
+    </div>
+
     <% if (livros.length > 0) { %>
-        <h2>Livros Cadastrados:</h2>
-
-        <ul>
+        <ul class="catalog-grid">
             <% livros.forEach(function(livro) { %>
-                <li>
-                    <div class="book-card-content">
-                        <div class="book-cover">
-                            <% if (livro.imagem) { %>
-                                <img src="/uploads/<%= livro.imagem %>" alt="Capa de <%= livro.nome %>">
-                            <% } else { %>
-                                <div style="width:120px; height:160px; background:#eee; display:flex; align-items:center; justify-content:center; border-radius:8px;">
-                                    <span style="font-size:2rem;">📖</span>
-                                </div>
-                            <% } %>
-                        </div>
-
-                        <div class="book-info">
-                            <div class="book-header">
-                                <strong><%= livro.nome %></strong>
-                                <span class="book-year"><%= livro.anoLancamento %></span>
+                <li class="book-card">
+                    
+                    <div class="book-cover-wrapper">
+                        <% if (livro.imagem) { %>
+                            <img src="/uploads/<%= livro.imagem %>" alt="Capa de <%= livro.nome %>">
+                        <% } else { %>
+                            <div class="no-cover">
+                                <span>📖</span>
                             </div>
+                        <% } %>
+                    </div>
 
-                            <div class="stars-display">
+                    <div class="book-info">
+                        <div class="book-header">
+                            <strong title="<%= livro.nome %>"><%= livro.nome %></strong>
+                            <div class="stars-display" title="Nota: <%= livro.nota %>">
                                 <% if(livro.nota) { %>
                                     <% for(let i = 0; i < livro.nota; i++) { %>★<% } %>
                                 <% } else { %>
-                                    <span style="color:#ccc; font-size:0.9rem;">Sem avaliação</span>
+                                    <span class="no-rating">☆</span>
                                 <% } %>
                             </div>
+                        </div>
 
-                            <div class="book-meta">
-                                <span><%= livro.autor %></span>
-                                <span>R$ <%= livro.preco ? livro.preco.toFixed(2) : '0.00' %></span>
-                            </div>
+                        <div class="book-meta">
+                            <span class="author"><%= livro.autor %></span>
+                            <span class="year-badge"><%= livro.anoLancamento %></span>
+                        </div>
 
-                            <p class="book-description">
-                                <%= livro.descricao %>
-                            </p>
+                        <div class="book-price">
+                            R$ <%= livro.preco ? livro.preco.toFixed(2) : '0.00' %>
+                        </div>
 
-                            <div class="book-actions">
-                                <a href="/livros/editar/<%= livro.id %>">Editar</a>
+                        <p class="book-description">
+                            <%= livro.descricao %>
+                        </p>
 
-                                <form action="/livros/<%= livro.id %>?_method=DELETE" method="POST" style="display:inline;">
-                                    <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este livro?');">
-                                        Deletar
-                                    </button>
-                                </form>
-                            </div>
+                        <div class="book-actions">
+                            <a href="/livros/editar/<%= livro.id %>" class="btn-edit">Editar</a>
+                            
+                            <form action="/livros/<%= livro.id %>?_method=DELETE" method="POST">
+                                <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja excluir?');">
+                                    Excluir
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </li>
             <% }) %>
         </ul>
     <% } else { %>
-        <p>Nenhum livro encontrado no catálogo.</p>
+        <div class="empty-state">
+            <p>Nenhum livro encontrado no catálogo.</p>
+        </div>
     <% } %>
 
     <footer class="site-footer">
         <p>
-            Construído por gabrii3lmao. Código-fonte disponível no GitHub:
-            <a href="https://github.com/gabrii3lmao/biblioteca" target="_blank">
-                gabrii3lmao/biblioteca
-            </a>
+            Construído por gabrii3lmao.
+            <a href="https://github.com/gabrii3lmao/biblioteca" target="_blank">GitHub</a>
         </p>
     </footer>
 

@@ -1,285 +1,242 @@
-/* ===== Reset ===== */
+/* ===== Reset & Base ===== */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter", sans-serif;
-}
-
-html, body {
-  height: 100%;
-}
-
-
-/* ESTA REGRA É CRUCIAL PARA EMPURRAR O FOOTER PARA BAIXO */
-.site-footer {
-  margin-top: auto; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  background: #0f0f0f;
-  color: #fff;
-  /* Aumentei o padding-bottom para dar mais espaço acima do footer */
-  padding: 40px 20px 80px; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #0f0f0f;
+    color: #fff;
+    padding: 40px 20px;
 }
 
-/* ===== Títulos ===== */
+/* ===== Cabeçalho da Página ===== */
 h1 {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #fff;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.header-actions {
+    max-width: 1200px;
+    margin: 0 auto 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
 }
 
 h2 {
-  font-size: 1.1rem;
-  margin: 18px 0 12px;
-  font-weight: 600;
-  color: #ddd;
-}
-h1, h2 {
     font-family: "Poppins", sans-serif;
-}
-h2 a {
-  text-decoration: none;
-  color: #1db954;
+    font-size: 1.2rem;
+    color: #ddd;
 }
 
-h2 a:hover {
-  opacity: 0.85;
+.btn-add {
+    background: #1db954;
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.2s;
 }
 
-/* ===== Contêiner dos cards (limite e centralização) ===== */
-ul {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
-  padding: 10px 0;
-  max-width: 90%;
-  margin: 0 auto;
+.btn-add:hover {
+    background: #1ed760;
+    transform: scale(1.05);
 }
 
-/* ===== Cada card ===== */
-ul li {
-  background: #181818;
-  padding: 18px;
-  border-radius: 10px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
-  transition: transform 0.15s ease, box-shadow 0.18s ease;
-  display: flex;
-  flex-direction: column;
-  min-height: 140px; /* evita cards muito curtos */
+/* ===== Grid do Catálogo ===== */
+.catalog-grid {
+    list-style: none;
+    display: grid;
+    /* Cards responsivos, mínimo 350px de largura */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
 }
 
-ul li:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+/* ===== Card do Livro ===== */
+.book-card {
+    background: #181818;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 240px; /* Altura fixa para manter alinhamento */
 }
 
-/* ===== Cabeçalho (título + ano) ===== */
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    background: #202020;
+}
+
+/* --- Imagem (Lado Esquerdo) --- */
+.book-cover-wrapper {
+    flex-shrink: 0; /* Não deixa a imagem encolher */
+    width: 130px;
+    height: 100%;
+}
+
+.book-cover-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Corta a imagem para caber sem distorcer */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.no-cover {
+    width: 100%;
+    height: 100%;
+    background: #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 2.5rem;
+}
+
+/* --- Infos (Lado Direito) --- */
+.book-info {
+    flex: 1; /* Ocupa o resto do espaço */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Evita que texto saia do card */
+}
+
 .book-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
 }
 
 .book-header strong {
-  font-size: 1.0rem;
-  color: #fff;
-  line-height: 1.2;
-  font-weight: 700;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px;
 }
 
-.book-year {
-  font-size: 0.85rem;
-  color: #a6a6a6;
-  background: rgba(255,255,255,0.03);
-  padding: 4px 8px;
-  border-radius: 8px;
+.stars-display {
+    color: #ffc107;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    white-space: nowrap;
 }
+.no-rating { color: #444; }
 
-/* ===== Meta (autor + preço) ===== */
 .book-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  color: #bfbfbf;
-  font-size: 0.95rem;
-  margin-bottom: 12px;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: #b3b3b3;
+    margin-bottom: 4px;
 }
 
-/* Em dispositivos pequenos autor/preço podem quebrar */
-.book-meta span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.year-badge {
+    background: #333;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #fff;
 }
 
-/* ===== Descrição ===== */
+.book-price {
+    color: #1db954;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
 .book-description {
-  color: #c3c3c3;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  margin-bottom: 16px;
-  flex: 1; /* faz com que descrição ocupe o espaço disponível e empurre actions para baixo */
-  overflow: hidden;
-}
-.book-description, .book-meta span {
-    font-family: "Inter", sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.2px;
+    font-size: 0.85rem;
+    color: #999;
+    line-height: 1.4;
+    
+    /* Truque para limitar a 3 linhas e colocar "..." */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: auto; /* Empurra os botões para baixo */
 }
 
-/* ===== Ações (Editar + Deletar) ===== */
+/* --- Botões --- */
 .book-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 6px;
-  align-items: center;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
-/* ESTE BLOCO FOI CORRIGIDO (Removido o margin-top: 40px;) */
-.site-footer {
-  
-  padding: 0px 0;
-  border-top: 2px solid #1db954;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-  color: #aaa;
-  font-family: "Inter", sans-serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.3px;
-}
-
-.site-footer a {
-  color: #1db954;
-  text-decoration: none;
-  margin-left: 4px;
-}
-
-.site-footer a:hover {
-  text-decoration: underline;
-}
-
-
-/* estilo do link "Editar" (aparece como botão) */
-.book-actions a {
-  flex: 1;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 12px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.98rem;
-  background: rgba(29,185,84,0.08);
-  color: #1db954;
-  border: 1px solid rgba(29,185,84,0.12);
-  transition: background 0.18s ease, transform 0.12s ease;
-}
-
-/* botão de deletar (form button) */
-.book-actions form {
-  flex: 1;
-  margin: 0;
-}
-
+.book-actions a, 
 .book-actions button {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 8px;
-  background: rgba(179,38,30,0.06);
-  border: 1px solid rgba(179,38,30,0.22);
-  color: #ff6b6b;
-  font-weight: 700;
-  cursor: pointer;
-  font-size: 0.98rem;
-  transition: background 0.18s ease, transform 0.12s ease;
+    flex: 1;
+    padding: 8px 0;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* hover states */
-.book-actions a:hover {
-  background: #1db954;
-  color: #000;
-  transform: translateY(-2px);
+.btn-edit {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
-.book-actions button:hover {
-  background: #ff4d4d;
-  color: #000;
-  transform: translateY(-2px);
-}
-/* ===== Tooltip personalizado ===== */
-.tooltip {
-  position: relative;
-  cursor: pointer;
+.btn-edit:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.tooltip:hover::after {
-  content: attr(data-fulltext);
-  position: absolute;
-  bottom: 110%;
-  left: 0;
-  background: #222;
-  color: #fff;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  white-space: nowrap;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
-  z-index: 10;
-  opacity: 1;
-  transform: translateY(-4px);
+.btn-delete {
+    background: rgba(255, 85, 85, 0.1);
+    color: #ff5555;
 }
 
-.tooltip::after {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s ease, transform 0.15s ease;
+.btn-delete:hover {
+    background: #ff5555;
+    color: white;
 }
 
-
-/* ===== Ajustes para telas pequenas ===== */
-@media (max-width: 600px) {
-  ul {
-    grid-template-columns: 1fr;
-  }
-
-  .book-header strong {
-    font-size: 1.05rem;
-  }
-
-  .book-actions {
-    flex-direction: column;
-  }
-
-  .book-actions a,
-  .book-actions button {
-    width: 100%;
-  }
+/* ===== Footer ===== */
+.site-footer {
+    margin-top: auto;
+    text-align: center;
+    color: #555;
+    padding-top: 40px;
+    font-size: 0.9rem;
 }
+.site-footer a { color: #1db954; text-decoration: none; }
 
-/* ===== Pequenas melhorias de acessibilidade/visual ===== */
-.book-actions a:focus,
-.book-actions button:focus,
-.book-header strong:focus {
-  outline: 2px solid rgba(29,185,84,0.25);
-  outline-offset: 2px;
+/* Mobile */
+@media (max-width: 480px) {
+    .catalog-grid { grid-template-columns: 1fr; }
+    .book-card { height: auto; flex-direction: column; }
+    .book-cover-wrapper { width: 100%; height: 200px; margin-bottom: 10px; }
+    .book-description { -webkit-line-clamp: 4; margin-bottom: 15px; }
 }

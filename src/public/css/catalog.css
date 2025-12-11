@@ -6,11 +6,23 @@
   font-family: "Inter", sans-serif;
 }
 
+html, body {
+  height: 100%;
+}
+
+
+/* ESTA REGRA É CRUCIAL PARA EMPURRAR O FOOTER PARA BAIXO */
+.site-footer {
+  margin-top: auto; 
+}
 
 body {
+  display: flex;
+  flex-direction: column;
   background: #0f0f0f;
   color: #fff;
-  padding: 40px 20px;
+  /* Aumentei o padding-bottom para dar mais espaço acima do footer */
+  padding: 40px 20px 80px; 
 }
 
 /* ===== Títulos ===== */
@@ -138,14 +150,33 @@ ul li:hover {
   align-items: center;
 }
 
-footer a {
-    color: #1db954;
-}
-footer p {
+/* ESTE BLOCO FOI CORRIGIDO (Removido o margin-top: 40px;) */
+.site-footer {
+  
+  padding: 0px 0;
+  border-top: 2px solid #1db954;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  color: #aaa;
   font-family: "Inter", sans-serif;
-  font-weight: 300;
+  font-size: 0.9rem;
   letter-spacing: 0.3px;
 }
+
+.site-footer a {
+  color: #1db954;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
 
 /* estilo do link "Editar" (aparece como botão) */
 .book-actions a {

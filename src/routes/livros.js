@@ -35,7 +35,7 @@ routes.post(
 routes.post("/livros", livroController.store);
 routes.get("/livros", livroController.index);
 routes.get("/livros/:id", livroController.show);
-routes.put("/livros/:id", livroController.update);
+routes.put("/livros/:id", upload.single("foto"),  livroController.update);
 routes.delete("/livros/:id", livroController.destroy);
 
 module.exports = routes;

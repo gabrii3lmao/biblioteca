@@ -1,4 +1,4 @@
-/* ===== Reset ===== */
+/* ===== Reset & Base ===== */
 * {
   margin: 0;
   padding: 0;
@@ -9,108 +9,201 @@
 body {
   background: #0f0f0f;
   color: #fff;
-  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-/* ===== Título ===== */
+.form-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+/* ===== Cabeçalho do Form ===== */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+}
+
 h1 {
-  text-align: center;
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
 }
 
-/* ===== Link Voltar ===== */
-a {
-  color: #1db954;
-  text-decoration: none;
-  font-weight: 600;
+.back-link {
+    color: #1db954;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.2s;
 }
+.back-link:hover { opacity: 0.8; }
 
-a:hover {
-  opacity: 0.7;
-}
-
-/* ===== Linha ===== */
-hr {
-  margin: 20px 0 30px;
-  border-color: #333;
-}
-
-/* ===== Formulário ===== */
+/* ===== O Formulário ===== */
 form {
-  max-width: 550px;
-  margin: 0 auto;
-  background: #181818;
-  padding: 25px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    background: #181818;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-form div {
-  margin-bottom: 20px;
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Layout de Duas Colunas */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+    gap: 20px;
 }
 
 /* Labels */
 label {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 1rem;
-  color: #ccc;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #bbb;
+    font-weight: 500;
 }
 
-/* Inputs e textarea */
-input,
+/* Inputs, textarea */
+input[type="text"],
+input[type="number"],
 textarea {
   width: 100%;
-  padding: 12px 10px;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 6px;
   border: 1px solid #333;
-  background: #0f0f0f;
+  background: #121212;
   color: #fff;
   font-size: 1rem;
   outline: none;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  transition: 0.2s;
 }
 
-input:focus,
-textarea:focus {
-  border-color: #1db954;
-  box-shadow: 0 0 5px rgba(29,185,84,0.5);
+input:focus, textarea:focus {
+    border-color: #1db954;
+    background: #000;
 }
 
-/* Remove espaço indesejado dentro do textarea vindo do EJS */
-textarea {
-  white-space: pre-wrap;
+textarea { resize: vertical; }
+
+
+/* ===== Campo de Imagem Atual (Estilo específico para edição) ===== */
+.current-cover {
+    max-width: 120px;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    margin-top: 10px;
+}
+.no-cover-edit {
+    width: 120px;
+    height: 160px;
+    background: #2a2a2a;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
+/* Altera o link "Voltar" */
+.back-link {
+    color: #1db954;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
-/* ===== Botão ===== */
-button {
+/* ===== Input de Arquivo (Estilo do botão de Upload) ===== */
+input[type="file"] {
+    padding: 10px;
+    background: #202020;
+    cursor: pointer;
+}
+input[type="file"]::file-selector-button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* ===== Estrelas (Rating) - Repetido para formEditBook.css ===== */
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+    background: #121212;
+    padding: 6px 12px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    width: fit-content;
+}
+
+.rating input { display: none; }
+
+.rating label {
+    cursor: pointer;
+    font-size: 24px;
+    color: #444;
+    margin: 0;
+    line-height: 1;
+    transition: 0.2s;
+}
+
+.rating input:checked ~ label,
+.rating input:hover ~ label,
+.rating input:hover ~ label ~ label {
+    color: #ffc107;
+}
+
+/* ===== Botão Submit (Atualizar Livro) ===== */
+.btn-submit {
   width: 100%;
   padding: 14px;
   border: none;
-  border-radius: 8px;
-  background: #1db954;
+  border-radius: 6px;
+  background: #1db954; /* Cor de sucesso */
   color: #000;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.15s ease;
+  margin-top: 10px;
 }
 
-button:hover {
+.btn-submit:hover {
   background: #17a447;
   transform: translateY(-2px);
 }
 
-/* Remove setas do input type="number" (Chrome, Edge, Safari) */
+/* Remoção de setas do number input */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-/* Remove setas do Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+/* Responsividade */
+@media (max-width: 500px) {
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    body { padding: 10px; }
+    form { padding: 20px; }
 }

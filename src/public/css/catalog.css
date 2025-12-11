@@ -31,6 +31,7 @@ h1 {
     align-items: center;
     border-bottom: 1px solid #333;
     padding-bottom: 15px;
+    gap: 20px; /* espaço entre o título e o botão */
 }
 
 h2 {
@@ -39,14 +40,15 @@ h2 {
     color: #ddd;
 }
 
+/* Botão "Novo livro" */
 .btn-add {
     background: #1db954;
     color: #000;
-    padding: 8px 16px;
-    border-radius: 20px;
+    padding: 6px 12px; /* menor */
+    border-radius: 16px; /* proporcional ao tamanho reduzido */
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* menor */
     transition: 0.2s;
 }
 
@@ -59,14 +61,17 @@ h2 {
 .catalog-grid {
     list-style: none;
     display: grid;
-    /* Cards responsivos, mínimo 350px de largura */
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
 }
-
+.empty-state{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* ===== Card do Livro ===== */
 .book-card {
     background: #181818;
@@ -76,7 +81,7 @@ h2 {
     gap: 16px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     transition: transform 0.2s, box-shadow 0.2s;
-    height: 240px; /* Altura fixa para manter alinhamento */
+    height: 240px;
 }
 
 .book-card:hover {
@@ -87,7 +92,7 @@ h2 {
 
 /* --- Imagem (Lado Esquerdo) --- */
 .book-cover-wrapper {
-    flex-shrink: 0; /* Não deixa a imagem encolher */
+    flex-shrink: 0;
     width: 130px;
     height: 100%;
 }
@@ -95,7 +100,7 @@ h2 {
 .book-cover-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Corta a imagem para caber sem distorcer */
+    object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
@@ -113,10 +118,10 @@ h2 {
 
 /* --- Infos (Lado Direito) --- */
 .book-info {
-    flex: 1; /* Ocupa o resto do espaço */
+    flex: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Evita que texto saia do card */
+    overflow: hidden;
 }
 
 .book-header {
@@ -141,6 +146,7 @@ h2 {
     letter-spacing: 1px;
     white-space: nowrap;
 }
+
 .no-rating { color: #444; }
 
 .book-meta {
@@ -171,29 +177,29 @@ h2 {
     font-size: 0.85rem;
     color: #999;
     line-height: 1.4;
-    
-    /* Truque para limitar a 3 linhas e colocar "..." */
+
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+
     overflow: hidden;
-    margin-bottom: auto; /* Empurra os botões para baixo */
+    margin-bottom: auto;
 }
 
 /* --- Botões --- */
 .book-actions {
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 12px;
+    margin-top: 12px;
 }
 
-.book-actions a, 
+.book-actions a,
 .book-actions button {
     flex: 1;
-    padding: 8px 0;
-    border-radius: 6px;
+    padding: 10px 0;
+    border-radius: 8px;
     text-align: center;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     border: none;
@@ -202,25 +208,47 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background: #222;
+    color: #ddd;
 }
 
+/* Editar */
 .btn-edit {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    background: #2b2b2b;
+    color: #e6e6e6;
 }
 
 .btn-edit:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: #1db954;
+    transform: translateY(-2px);
 }
 
+/* Apagar */
 .btn-delete {
-    background: rgba(255, 85, 85, 0.1);
-    color: #ff5555;
+    background: #3a1111;
+    color: #ff6b6b;
+    padding: 6px 12px;
 }
 
 .btn-delete:hover {
     background: #ff5555;
-    color: white;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .book-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .book-actions a,
+    .book-actions button {
+        padding: 12px 0;
+        font-size: 1rem;
+    }
 }
 
 /* ===== Footer ===== */
@@ -231,9 +259,13 @@ h2 {
     padding-top: 40px;
     font-size: 0.9rem;
 }
-.site-footer a { color: #1db954; text-decoration: none; }
 
-/* Mobile */
+.site-footer a { 
+    color: #1db954; 
+    text-decoration: none; 
+}
+
+/* Mobile Ajustes Extras */
 @media (max-width: 480px) {
     .catalog-grid { grid-template-columns: 1fr; }
     .book-card { height: auto; flex-direction: column; }

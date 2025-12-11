@@ -1,74 +1,80 @@
-📚 BIBLIOTECA-LIVROS API
+📚 Biblioteca de Livros — Sistema Completo (Node.js + Express + Sequelize)
 
-API RESTful desenvolvida em Node.js para gerenciamento de um catálogo de livros (CRUD) utilizando Express, Sequelize e SQLite3.
+Aplicação completa para gerenciamento de um catálogo de livros, incluindo:
+
+- Interface web amigável
+- Upload de capa do livro
+- Avaliação por estrelas
+- Listagem em cards
+- Sistema CRUD completo (criar, editar e excluir)
+- Arquitetura MVC
+- Banco SQLite automático
+
+Desenvolvido em Node.js + Express + Sequelize.
+
 💻 Tecnologias Utilizadas
-- Linguagem: JavaScript (Node.js)
-- Framework: Express
-- ORM: Sequelize
-- Banco de Dados: SQLite3
-- Estrutura: MVC (Model-View-Controller)
 
-⬇️ Como Baixar e Instalar
+- JavaScript (Node.js)
+- Express.js
+- Sequelize ORM
+- SQLite3
+- Multer (upload de imagens)
+- EJS (templates)
+- MVC (Model-View-Controller)
 
-Para rodar este projeto localmente, siga os passos abaixo:
+⬇️ Como Instalar e Rodar
 1. Requisitos
 
-Certifique-se de ter o Node.js e o npm (ou Yarn) instalados na sua máquina.
+- Node.js instalado
+- npm ou yarn
 
 2. Clonar o Repositório
-
-``` 
+```
 git clone https://github.com/gabrii3lmao/biblioteca.git
-cd BIBLIOTECA-LIVROS
+cd biblioteca
 ```
-3. Instalar Dependências
-
-Instale todas as bibliotecas necessárias definidas no package.json:
-
+4. Instalar Dependências
 ```
-npm install 
+npm install
 # ou
 yarn install
 ```
-4. Inicializar o Servidor
-
-Inicie o servidor Express. O Sequelize irá criar automaticamente o arquivo biblioteca.db e a tabela livros se eles não existirem.
-
+4. Rodar o Servidor
 ```
 node server.js
-# ou, se estiver usando um pacote como nodemon:
-npm start 
+# ou
+npm start
 ```
-O servidor estará rodando em http://localhost:3000.
 
-⚙️ Rotas da API (Endpoints)
+Ao iniciar, o Sequelize cria automaticamente o arquivo biblioteca.db e a tabela livros (se não existirem).
 
-Todas as rotas devem ser acessadas na URL base: http://localhost:3000.
+Acesse no navegador:
+👉 http://localhost:3000
 
-Para interagir com a API, você pode usar ferramentas como Insomnia ou Postman, que permitem enviar requisições HTTP de forma prática.
+🌐 Funcionalidades do Sistema
+✔️ Listagem de livros em cards
 
-Exemplo 1: Cadastrar um Livro (POST)
+Com capa, título, autor, ano, preço, estrelas e descrição.
 
-- Crie uma nova requisição.
-- Método: POST
-- URL: http://localhost:3000/livros
-- Body (Corpo): Escolha o formato JSON e insira os dados do livro:
-```
-{
-    "nome": "O Guia do Mochileiro das Galáxias",
-    "autor": "Douglas Adams",
-    "anoLancamento": 1979,
-    "preco": 45.90,
-    "descricao": "Uma trilogia de cinco livros."
-}
-```
-- Clique em Enviar (Send). A API deve retornar o objeto do livro criado com o status 201 Created.
+✔️ Cadastro de novos livros
 
-Exemplo 2: Listar Todos os Livros (GET)
+Formulário com:
+- título
+- autor
+- ano
+- preço
+- descrição
+- avaliação por estrelas
+- upload da capa
 
-- Crie uma nova requisição.
-- Método: GET
-- URL: http://localhost:3000/livros
-- Body (Corpo): Deixe vazio (No Body).
+✔️ Edição completa
 
-Clique em Enviar (Send). A API deve retornar um array [] com todos os livros cadastrados (status 200 OK).
+Permite trocar qualquer dado, inclusive a capa.
+
+✔️ Exclusão de livros
+
+Remoção direta pela interface.
+
+✔️ Upload de Imagens
+
+Usando Multer (armazenamento local na pasta uploads/).

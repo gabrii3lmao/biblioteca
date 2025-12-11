@@ -8,6 +8,12 @@ API RESTful desenvolvida em Node.js para gerenciamento de um catálogo de livros
 - Banco de Dados: SQLite3
 - Estrutura: MVC (Model-View-Controller)
 
+## 🖼️ Prévia do Projeto
+
+![Tela inicial](./doc/index.png)
+![Formulário de Novo Livro](./doc/new.png)
+![Editar livro](./doc/edit.png)
+
 ⬇️ Como Baixar e Instalar
 
 Para rodar este projeto localmente, siga os passos abaixo:

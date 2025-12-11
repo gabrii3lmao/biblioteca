@@ -1,8 +1,10 @@
 const Livro = require("../models/Livro");
-
+const fs = require("fs");
 module.exports = {
   async store(req, res) {
-    const { nome, autor, anoLancamento, preco, descricao } = req.body;
+    const { nome, autor, anoLancamento, preco, descricao, nota } = req.body;
+
+    const imagem = req.file ? req.file.filename : null;
 
     try {
       const livro = await Livro.create({
@@ -11,6 +13,8 @@ module.exports = {
         anoLancamento,
         preco,
         descricao,
+        imagem,
+        nota
       });
       return res.redirect("/");
     } catch (err) {
@@ -53,20 +57,26 @@ module.exports = {
 
   async update(req, res) {
     const { id } = req.params;
-    const { nome, autor, anoLancamento, preco, descricao } = req.body;
+    const { nome, autor, anoLancamento, preco, descricao, nota } = req.body;
     try {
       const livro = await Livro.findByPk(id);
       if (!livro) {
         return res.status(404).json({ error: "Livro não encontrado" });
       }
 
+      let novaImagem = livro.imagem
+
+      if (req.file) {
+        novaImagem = req.file.filename;
+      }
+
       await Livro.update(
-        { nome, autor, anoLancamento, preco, descricao },
+        { nome, autor, anoLancamento, preco, descricao, nota, imagem: novaImagem },
         { where: { id } }
       );
 
       const livroAtualizado = await Livro.findByPk(id);
-      return res.redirect('/')
+      return res.redirect("/");
     } catch (error) {
       console.error("Erro ao atualizar livro:", error);
       return res

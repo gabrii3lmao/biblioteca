@@ -4,76 +4,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= pageTitle %>
-    </title>
+    <title><%= pageTitle %></title>
     <link rel="stylesheet" href="/css/catalog.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .book-card-content {
+            display: flex;
+            gap: 20px;
+            align-items: start;
+        }
+        .book-cover img {
+            max-width: 120px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .book-info {
+            flex: 1;
+        }
+        .stars-display {
+            color: #ffc107; /* Amarelo */
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>
-        <%= pageTitle %>
-    </h1>
+    <h1><%= pageTitle %></h1>
     <h2><a href="/livros/novo">Adicionar novos livros</a></h2>
-    <% if (livros.length> 0) { %>
+    
+    <% if (livros.length > 0) { %>
         <h2>Livros Cadastrados:</h2>
 
         <ul>
             <% livros.forEach(function(livro) { %>
                 <li>
-                    <div class="book-header">
-                        <strong>
-                            <%= livro.nome %>
-                        </strong>
-                        <span class="book-year">
-                            <%= livro.anoLancamento %>
-                        </span>
-                    </div>
+                    <div class="book-card-content">
+                        <div class="book-cover">
+                            <% if (livro.imagem) { %>
+                                <img src="/uploads/<%= livro.imagem %>" alt="Capa de <%= livro.nome %>">
+                            <% } else { %>
+                                <div style="width:120px; height:160px; background:#eee; display:flex; align-items:center; justify-content:center; border-radius:8px;">
+                                    <span style="font-size:2rem;">📖</span>
+                                </div>
+                            <% } %>
+                        </div>
 
-                    <div class="book-meta">
-                        <span>
-                            <%= livro.autor %>
-                        </span>
-                        <span>R$ <%= livro.preco.toFixed(2) %></span>
-                    </div>
+                        <div class="book-info">
+                            <div class="book-header">
+                                <strong><%= livro.nome %></strong>
+                                <span class="book-year"><%= livro.anoLancamento %></span>
+                            </div>
 
-                    <p class="book-description">
-                        <%= livro.descricao %>
-                    </p>
+                            <div class="stars-display">
+                                <% if(livro.nota) { %>
+                                    <% for(let i = 0; i < livro.nota; i++) { %>★<% } %>
+                                <% } else { %>
+                                    <span style="color:#ccc; font-size:0.9rem;">Sem avaliação</span>
+                                <% } %>
+                            </div>
 
-                    <div class="book-actions">
-                        <a href="/livros/editar/<%= livro.id %>">Editar</a>
+                            <div class="book-meta">
+                                <span><%= livro.autor %></span>
+                                <span>R$ <%= livro.preco ? livro.preco.toFixed(2) : '0.00' %></span>
+                            </div>
 
-                        <form action="/livros/<%= livro.id %>?_method=DELETE" method="POST">
-                            <button type="submit"
-                                onclick="return confirm('Tem certeza que deseja excluir este livro?');">
-                                Deletar
-                            </button>
-                        </form>
+                            <p class="book-description">
+                                <%= livro.descricao %>
+                            </p>
+
+                            <div class="book-actions">
+                                <a href="/livros/editar/<%= livro.id %>">Editar</a>
+
+                                <form action="/livros/<%= livro.id %>?_method=DELETE" method="POST" style="display:inline;">
+                                    <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este livro?');">
+                                        Deletar
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </li>
-
-                <% }) %>
+            <% }) %>
         </ul>
-        <% } else { %>
-            <p>Nenhum livro encontrado no catálogo.</p>
-            <% } %>
-                <footer class="site-footer">
-                    <p>
-                        Construído por gabrii3lmao. Código-fonte disponível no GitHub:
-                        <a href="https://github.com/gabrii3lmao/biblioteca" target="_blank">
-                            gabrii3lmao/biblioteca
-                        </a>
-                    </p>
-                </footer>
+    <% } else { %>
+        <p>Nenhum livro encontrado no catálogo.</p>
+    <% } %>
+
+    <footer class="site-footer">
+        <p>
+            Construído por gabrii3lmao. Código-fonte disponível no GitHub:
+            <a href="https://github.com/gabrii3lmao/biblioteca" target="_blank">
+                gabrii3lmao/biblioteca
+            </a>
+        </p>
+    </footer>
 
     <script src="/js/tooltips.js"></script>
 </body>
-
 </html>

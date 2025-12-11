@@ -31,6 +31,15 @@ Livro.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    imagem: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    nota: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      validate: {min: 1, max: 5}
+    }
   },
   {
     sequelize,
